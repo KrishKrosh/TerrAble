@@ -23,6 +23,7 @@
 
 import React from "react";
 import "./App.css";
+import Button from 'react-bootstrap/Button';
 
 import logo from "./logo.svg";
 
@@ -115,7 +116,17 @@ class App extends React.Component {
               </p>
             );
           }, this)}
+        <div class="bottom-right">
+        <input placeholder="Wallet Name:"></input>
+        <br/>
+        <input placeholder="Wallet Address:"></input>
+        <br/>
+        <input placeholder="Wallet Password:"></input>
+        <br/>
+        <Button variant="primary">Deploy!</Button>
         </div>
+        </div>
+        
       </div>
     );
   }
