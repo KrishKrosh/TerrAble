@@ -23,7 +23,9 @@
 
 import React from "react";
 import "./App.css";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
+//import loading from react bootstrap
+import Spinner from "react-bootstrap/Spinner";
 
 import logo from "./logo.svg";
 
@@ -38,7 +40,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.simpleWorkspace = React.createRef();
-    this.state = { code: "", renderedCode: "" };
+    this.state = { code: "", renderedCode: "", loading: false, success: false };
   }
 
   componentDidMount() {
@@ -51,6 +53,22 @@ class App extends React.Component {
     );
     this.setState({ renderedCode: code });
     console.log(code);
+  };
+
+  deploy = async () => {
+    this.setState({ loading: true });
+    // fetch from an api
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title: "Wallet" }),
+    };
+    fetch("https://reqres.in/api/posts", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({ loading: false, success: true });
+        console.log(data);
+      });
   };
 
   //whenever the ref changes, console.log the code
@@ -105,28 +123,41 @@ class App extends React.Component {
           </BlocklyComponent>
         </div>
         <div
-          className="flex-child"
+          className="flex-child scroll"
           style={{ maxWidth: "30vw", color: "white", backgroundColor: "black" }}
         >
-          {this.state.renderedCode.split("\n").map((line, i) => {
-            return (
-              <p style={{ color: "white" }} key={i}>
-                {line}
-                <br />
-              </p>
-            );
-          }, this)}
-        <div class="bottom-right">
-        <input placeholder="Wallet Name:"></input>
-        <br/>
-        <input placeholder="Wallet Address:"></input>
-        <br/>
-        <input placeholder="Wallet Password:"></input>
-        <br/>
-        <Button variant="primary">Deploy!</Button>
+          {!this.state.success ? (
+            !this.state.loading ? (
+              this.state.renderedCode.split("\n").map((line, i) => {
+                return (
+                  <p style={{ color: "white" }} key={i}>
+                    {line}
+                    <br />
+                  </p>
+                );
+              }, this)
+            ) : (
+              <Spinner animation="border" variant="success" />
+            )
+          ) : (
+            <h1>Deployed!</h1>
+          )}
+          <div class="bottom-right">
+            <input placeholder="Wallet Name:"></input>
+            <br />
+            <input placeholder="Wallet Address:"></input>
+            <br />
+            <input placeholder="Wallet Password:"></input>
+            <br />
+            <Button
+              style={{ marginLeft: "60%", marginRight: "auto" }}
+              variant="primary"
+              onClick={this.deploy}
+            >
+              Deploy!
+            </Button>
+          </div>
         </div>
-        </div>
-        
       </div>
     );
   }
