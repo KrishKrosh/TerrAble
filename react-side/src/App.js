@@ -21,49 +21,63 @@
  * @author samelh@google.com (Sam El-Husseini)
  */
 
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-import logo from './logo.svg';
+import logo from "./logo.svg";
 
-import BlocklyComponent, { Block, Value, Field, Shadow } from './Blockly';
+import BlocklyComponent, { Block, Value, Field, Shadow } from "./Blockly";
 
-import BlocklyJS from 'blockly/javascript';
+import BlocklyJS from "blockly/javascript";
 
-import './blocks/customblocks';
-import './generator/generator';
+import "./blocks/customblocks";
+import "./generator/generator";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.simpleWorkspace = React.createRef();
+    this.state = { code: "", renderedCode: "" };
   }
 
-  generateCode = () => {
+  componentDidMount() {
+    this.simpleWorkspace.current.workspace.addChangeListener(this.generateCode);
+  }
+
+  generateCode = (event) => {
     var code = BlocklyJS.workspaceToCode(
       this.simpleWorkspace.current.workspace
     );
+    this.setState({ renderedCode: code });
     console.log(code);
-  }
+  };
+
+  //whenever the ref changes, console.log the code
+  onRefChange = (node) => {
+    console.log("onRefChange");
+    console.log(node);
+  };
 
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <button onClick={this.generateCode}>Convert</button>
-          <BlocklyComponent ref={this.simpleWorkspace}
-          readOnly={false} trashcan={true} media={'media/'}
-          move={{
-            scrollbars: true,
-            drag: true,
-            wheel: true
-          }}
-          initialXml={`
-<xml xmlns="http://www.w3.org/1999/xhtml">
-<block type="controls_ifelse" x="0" y="0"></block>
-</xml>
-      `}>
+      <div style={{ display: "flex" }}>
+        <div className="flex-child" style={{ height: "100vh", width: "70vw" }}>
+          <BlocklyComponent
+            ref={this.simpleWorkspace}
+            readOnly={false}
+            trashcan={true}
+            media={"media/"}
+            move={{
+              scrollbars: true,
+              drag: true,
+              wheel: true,
+            }}
+            initialXml={`
+          <xml xmlns="http://www.w3.org/1999/xhtml">
+          <block type="controls_ifelse" x="0" y="0"></block>
+          </xml>
+                `}
+          >
             <Block type="test_react_field" />
             <Block type="test_react_date_field" />
             <Block type="controls_ifelse" />
@@ -89,7 +103,13 @@ class App extends React.Component {
               </Value>
             </Block>
           </BlocklyComponent>
-        </header>
+        </div>
+        <div
+          className="flex-child"
+          style={{ maxWidth: "30vw", color: "white", backgroundColor: "black" }}
+        >
+          {this.state.renderedCode ? this.state.renderedCode : "No Code"}
+        </div>
       </div>
     );
   }

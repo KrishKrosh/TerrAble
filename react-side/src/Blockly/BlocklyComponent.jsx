@@ -21,21 +21,21 @@
  * @author samelh@google.com (Sam El-Husseini)
  */
 
-import React from 'react';
-import './BlocklyComponent.css';
+import React from "react";
+import "./BlocklyComponent.css";
 
-import Blockly from 'blockly/core';
-import locale from 'blockly/msg/en';
-import 'blockly/blocks';
+import Blockly from "blockly/core";
+import locale from "blockly/msg/en";
+import "blockly/blocks";
 
 Blockly.setLocale(locale);
 
 class BlocklyComponent extends React.Component {
-    constructor(props) {
-        super(props);
-        this.blocklyDiv = React.createRef();
-        this.toolbox = React.createRef();
-    }
+  constructor(props) {
+    super(props);
+    this.blocklyDiv = React.createRef();
+    this.toolbox = React.createRef();
+  }
 
     componentDidMount() {
         var toolboxx = {
@@ -209,11 +209,11 @@ class BlocklyComponent extends React.Component {
                 "kind": "category",
                 "name": "Variables",
                 "contents": [
-                  {
-                    "kind": "button",
-                    "text": "Create variable",
-                    "callbackKey": "CREATE_VARIABLE"
-                  },
+                //   {
+                //     "kind": "button",
+                //     "text": "Create variable",
+                //     "callbackKey": "CREATE_VARIABLE"
+                //   },
                   {
                     "kind": "block",
                     "type": "variables_set"
@@ -239,31 +239,41 @@ class BlocklyComponent extends React.Component {
         // changes theme to dark mode
         this.primaryWorkspace.setTheme(Blockly.Themes.Dark);
 
-        this.primaryWorkspace.registerButtonCallback("CREATE_VARIABLE", () => {console.log("fuck")});
+        this.primaryWorkspace.registerButtonCallback("CREATE_VARIABLE", () => {console.log("create variable");});
 
         if (initialXml) {
             Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(initialXml), this.primaryWorkspace);
         }
     }
 
-    get workspace() {
-        return this.primaryWorkspace;
-    }
+  get workspace() {
+    return this.primaryWorkspace;
+  }
 
-    setXml(xml) {
-        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(xml), this.primaryWorkspace);
-    }
+  setXml(xml) {
+    Blockly.Xml.domToWorkspace(
+      Blockly.Xml.textToDom(xml),
+      this.primaryWorkspace
+    );
+  }
 
-    render() {
-        const { children } = this.props;
+  render() {
+    const { children } = this.props;
 
-        return <React.Fragment>
-            <div ref={this.blocklyDiv} id="blocklyDiv" />
-            <xml xmlns="https://developers.google.com/blockly/xml" is="blockly" style={{ display: 'none' }} ref={this.toolbox}>
-                {children}
-            </xml>
-        </React.Fragment>;
-    }
+    return (
+      <React.Fragment>
+        <div ref={this.blocklyDiv} id="blocklyDiv" />
+        <xml
+          xmlns="https://developers.google.com/blockly/xml"
+          is="blockly"
+          style={{ display: "none" }}
+          ref={this.toolbox}
+        >
+          {children}
+        </xml>
+      </React.Fragment>
+    );
+  }
 }
 
 export default BlocklyComponent;
