@@ -140,24 +140,26 @@ class App extends React.Component {
               <Spinner animation="border" variant="success" />
             )
           ) : (
-            <h1>Deployed!</h1>
+            <h1>Deployed to Terra!</h1>
           )}
-          <div class="bottom-right">
-            <input placeholder="Wallet Name:"></input>
-            <br />
-            <input placeholder="Wallet Address:"></input>
-            <br />
-            <input placeholder="Wallet Password:"></input>
-            <br />
-            <br />
-            <Button
-              style={{ marginLeft: "60%", marginRight: "auto" }}
-              variant="primary"
-              onClick={this.deploy}
-            >
-              Deploy!
-            </Button>
-          </div>
+          {!this.state.success ? (
+            <div class="bottom-right">
+              <input placeholder="Wallet Name:"></input>
+              <br />
+              <input placeholder="Wallet Address:"></input>
+              <br />
+              <input placeholder="Wallet Password:"></input>
+              <br />
+              <br />
+              <Button
+                style={{ marginLeft: "60%", marginRight: "auto" }}
+                variant="primary"
+                onClick={this.deploy}
+              >
+                Deploy!
+              </Button>
+            </div>
+          ) : null}
         </div>
       </div>
     );
