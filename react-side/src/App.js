@@ -123,6 +123,7 @@ class App extends React.Component {
         <br/>
         <input placeholder="Wallet Password:"></input>
         <br/>
+        <br/>
         <Button variant="primary">Deploy!</Button>
         </div>
         </div>
