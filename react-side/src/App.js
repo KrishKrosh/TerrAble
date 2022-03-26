@@ -149,6 +149,7 @@ class App extends React.Component {
             <br />
             <input placeholder="Wallet Password:"></input>
             <br />
+            <br />
             <Button
               style={{ marginLeft: "60%", marginRight: "auto" }}
               variant="primary"
