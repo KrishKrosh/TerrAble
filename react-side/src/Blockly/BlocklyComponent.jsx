@@ -239,6 +239,10 @@ class BlocklyComponent extends React.Component {
                   },
                   {
                     "kind": "block",
+                    "type": "querydef"
+                  },
+                  {
+                    "kind": "block",
                     "type": "query"
                   }
                 ]

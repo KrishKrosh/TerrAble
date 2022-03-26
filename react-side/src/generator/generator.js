@@ -26,6 +26,7 @@
 
 import * as Blockly from 'blockly/core';
 import 'blockly/javascript';
+import { Block } from '../Blockly';
 
 Blockly.JavaScript['test_react_field'] = function (block) {
     return 'console.log(\'custom block\');\n';
@@ -219,7 +220,7 @@ Blockly.JavaScript['variables_set'] = function(block) {
     return code;
   };
 
-  Blockly.JavaScript['query'] = function(block) {
+  Blockly.JavaScript['querydef'] = function(block) {
     var code = 
     `
     pub fn query(deps: Deps, _env: Env, msg: QueryMsg) -> StdResult<Binary> {
@@ -235,3 +236,11 @@ Blockly.JavaScript['variables_set'] = function(block) {
     `;
     return code;
   }
+
+  Blockly.JavaScript['query'] = function(block) {
+    var code = 
+    `
+    let success = query(Deps, Env, QueryMsg);\n
+    `;
+    return code;
+}
