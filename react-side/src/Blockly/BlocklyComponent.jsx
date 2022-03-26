@@ -46,6 +46,8 @@ class BlocklyComponent extends React.Component {
                 ...rest
             },
         );
+        // changes theme to dark mode
+        this.primaryWorkspace.setTheme(Blockly.Themes.Dark);
 
         if (initialXml) {
             Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(initialXml), this.primaryWorkspace);
