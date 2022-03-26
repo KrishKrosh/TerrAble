@@ -148,7 +148,7 @@ class App extends React.Component {
               <br />
               <input placeholder="Wallet Address:"></input>
               <br />
-              <input placeholder="Wallet Password:"></input>
+              <input type="password" placeholder="Wallet Password:"></input>
               <br />
               <br />
               <Button
