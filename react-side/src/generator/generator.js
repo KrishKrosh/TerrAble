@@ -126,7 +126,7 @@ Blockly.JavaScript['controls_if'] = function(block) {
     // Variable getter.
     var code = Blockly.JavaScript.variableDB_.getName(block.getFieldValue('VAR'),
         Blockly.VARIABLE_CATEGORY_NAME);
-    return ['let', Blockly.JavaScript.ORDER_ATOMIC];
+    return [code, Blockly.JavaScript.ORDER_ATOMIC];
   };
 
 Blockly.JavaScript['variables_set'] = function(block) {
