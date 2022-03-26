@@ -104,7 +104,10 @@ class App extends React.Component {
             </Block>
           </BlocklyComponent>
         </div>
-        <div className="flex-child" style={{ maxWidth: "30vw" }}>
+        <div
+          className="flex-child"
+          style={{ maxWidth: "30vw", color: "white", backgroundColor: "black" }}
+        >
           {this.state.renderedCode ? this.state.renderedCode : "No Code"}
         </div>
       </div>
