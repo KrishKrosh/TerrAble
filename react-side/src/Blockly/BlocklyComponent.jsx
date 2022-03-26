@@ -48,11 +48,11 @@ class BlocklyComponent extends React.Component {
                   {
                     "kind": "block",
                     "type": "controls_if"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "logic_compare"
                   }
+                  // {
+                  //   "kind": "block",
+                  //   "type": "logic_compare"
+                  // }
                 ]
               },
               {
@@ -70,19 +70,19 @@ class BlocklyComponent extends React.Component {
                   {
                     "kind": "block",
                     "type": "logic_boolean"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "logic_negate"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "logic_null"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "logic_ternary"
                   }
+                  // {
+                  //   "kind": "block",
+                  //   "type": "logic_negate"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "logic_null"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "logic_ternary"
+                  // }
                 ]
               },
               {
@@ -96,19 +96,19 @@ class BlocklyComponent extends React.Component {
                   {
                     "kind": "block",
                     "type": "controls_whileUntil"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "controls_for"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "controls_forEach"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "controls_flow_statements"
                   }
+                  // {
+                  //   "kind": "block",
+                  //   "type": "controls_for"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "controls_forEach"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "controls_flow_statements"
+                  // }
                 ]
               },
               {
@@ -122,79 +122,79 @@ class BlocklyComponent extends React.Component {
                   {
                     "kind": "block",
                     "type": "math_arithmetic"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "math_single"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "math_trig"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "math_constant"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "math_number_property"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "math_round"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "math_on_list"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "math_modulo"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "math_constrain"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "math_random_int"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "math_random_float"
                   }
+                  // {
+                  //   "kind": "block",
+                  //   "type": "math_single"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "math_trig"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "math_constant"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "math_number_property"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "math_round"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "math_on_list"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "math_modulo"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "math_constrain"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "math_random_int"
+                  // },
+                  // {
+                  //   "kind": "block",
+                  //   "type": "math_random_float"
+                  // }
                 ]
               },
-              {
-                "kind": "category",
-                "name": "Lists",
-                "contents": [
-                  {
-                    "kind": "block",
-                    "type": "lists_create_empty"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "lists_create_with"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "lists_repeat"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "lists_length"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "lists_isEmpty"
-                  },
-                  {
-                    "kind": "block",
-                    "type": "lists_indexOf"
-                  }
-                ]
-              },
+              // {
+              //   "kind": "category",
+              //   "name": "Lists",
+              //   "contents": [
+              //     {
+              //       "kind": "block",
+              //       "type": "lists_create_empty"
+              //     },
+              //     {
+              //       "kind": "block",
+              //       "type": "lists_create_with"
+              //     },
+              //     {
+              //       "kind": "block",
+              //       "type": "lists_repeat"
+              //     },
+              //     {
+              //       "kind": "block",
+              //       "type": "lists_length"
+              //     },
+              //     {
+              //       "kind": "block",
+              //       "type": "lists_isEmpty"
+              //     },
+              //     {
+              //       "kind": "block",
+              //       "type": "lists_indexOf"
+              //     }
+              //   ]
+              // },
               {
                 "kind": "category",
                 "name": "Text",
