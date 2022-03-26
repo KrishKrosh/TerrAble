@@ -9,6 +9,12 @@
 
 .flex-child:first-child {
 }
+
+.bottom-right {
+  position: absolute;
+  bottom: 20px;
+  right: 220px;
+}
 .App-header {
   background-color: #282c34;
   min-width: 30vw;
