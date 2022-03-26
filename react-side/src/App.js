@@ -108,7 +108,14 @@ class App extends React.Component {
           className="flex-child"
           style={{ maxWidth: "30vw", color: "white", backgroundColor: "black" }}
         >
-          {this.state.renderedCode ? this.state.renderedCode : "No Code"}
+          {this.state.renderedCode.split("\n").map((line, i) => {
+            return (
+              <p style={{ color: "white" }} key={i}>
+                {line}
+                <br />
+              </p>
+            );
+          }, this)}
         </div>
       </div>
     );
