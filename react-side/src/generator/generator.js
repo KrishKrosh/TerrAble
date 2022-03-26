@@ -38,6 +38,86 @@ Blockly.JavaScript['test_react_date_field'] = function (block) {
 Blockly.JavaScript['text_print'] = function(block) {
     // Print statement.
     var msg = Blockly.JavaScript.valueToCode(block, 'TEXT',
-        Blockly.JavaScript.ORDER_NONE) || '\'\'';
-    return 'println!(' + msg + ');\n';
+        Blockly.JavaScript.ORDER_NONE) || '';
+    return 'println!("{}", ' + msg + ');\n';
 };
+
+Blockly.JavaScript['controls_if'] = function(block) {
+    // If/elseif/else condition.
+    var n = 0;
+    var code = '', branchCode, conditionCode;
+    if (Blockly.JavaScript.STATEMENT_PREFIX) {
+      // Automatic prefix insertion is switched off for this block.  Add manually.
+      code += Blockly.JavaScript.injectId(Blockly.JavaScript.STATEMENT_PREFIX,
+          block);
+    }
+    do {
+      conditionCode = Blockly.JavaScript.valueToCode(block, 'IF' + n,
+          Blockly.JavaScript.ORDER_NONE) || 'false';
+      branchCode = Blockly.JavaScript.statementToCode(block, 'DO' + n);
+      if (Blockly.JavaScript.STATEMENT_SUFFIX) {
+        branchCode = Blockly.JavaScript.prefixLines(
+            Blockly.JavaScript.injectId(Blockly.JavaScript.STATEMENT_SUFFIX,
+            block), Blockly.JavaScript.INDENT) + branchCode;
+      }
+      code += (n > 0 ? ' else ' : '') +
+          'if ' + conditionCode + ' {\n' + branchCode + '}';
+      ++n;
+    } while (block.getInput('IF' + n));
+  
+    if (block.getInput('ELSE') || Blockly.JavaScript.STATEMENT_SUFFIX) {
+      branchCode = Blockly.JavaScript.statementToCode(block, 'ELSE');
+      if (Blockly.JavaScript.STATEMENT_SUFFIX) {
+        branchCode = Blockly.JavaScript.prefixLines(
+            Blockly.JavaScript.injectId(Blockly.JavaScript.STATEMENT_SUFFIX,
+            block), Blockly.JavaScript.INDENT) + branchCode;
+      }
+      code += ' else {\n' + branchCode + '}';
+    }
+    return code + '\n';
+  };
+
+  Blockly.JavaScript['controls_repeat_ext'] = function(block) {
+    // Repeat n times.
+    if (block.getField('TIMES')) {
+      // Internal number.
+      var repeats = String(Number(block.getFieldValue('TIMES')));
+    } else {
+      // External number.
+      var repeats = Blockly.JavaScript.valueToCode(block, 'TIMES',
+          Blockly.JavaScript.ORDER_ASSIGNMENT) || '1';
+    }
+    var branch = Blockly.JavaScript.statementToCode(block, 'DO');
+    branch = Blockly.JavaScript.addLoopTrap(branch, block);
+    var code = '';
+    var loopVar = Blockly.JavaScript.variableDB_.getDistinctName(
+        'count', Blockly.VARIABLE_CATEGORY_NAME);
+    var endVar = repeats;
+    if (!repeats.match(/^\w+$/) && !Blockly.isNumber(repeats)) {
+      endVar = Blockly.JavaScript.variableDB_.getDistinctName(
+          'repeat_end', Blockly.VARIABLE_CATEGORY_NAME);
+      code += 'let ' + endVar + ' = ' + repeats + ';\n';
+    }
+    code += 'for ' + loopVar + ' in 1..' + endVar + ' {\n' + branch + '}\n';
+    return code;
+  };
+
+  Blockly.JavaScript['controls_whileUntil'] = function(block) {
+    // Do while/until loop.
+    var until = block.getFieldValue('MODE') == 'UNTIL';
+    var argument0 = Blockly.JavaScript.valueToCode(block, 'BOOL',
+        until ? Blockly.JavaScript.ORDER_LOGICAL_NOT :
+        Blockly.JavaScript.ORDER_NONE) || 'loop';
+    var branch = Blockly.JavaScript.statementToCode(block, 'DO');
+    branch = Blockly.JavaScript.addLoopTrap(branch, block);
+    if (until) {
+      argument0 = '!' + argument0;
+    }
+    var return_statement;
+    if (argument0.match('loop')) {
+        return_statement = 'loop {' + branch + '}';
+    } else {
+        return_statement = 'while ' + argument0 + ' {' + branch + '}';
+    }
+    return return_statement + '\n';
+  };
