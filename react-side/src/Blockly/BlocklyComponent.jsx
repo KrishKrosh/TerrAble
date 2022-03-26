@@ -27,6 +27,7 @@ import "./BlocklyComponent.css";
 import Blockly from "blockly/core";
 import locale from "blockly/msg/en";
 import "blockly/blocks";
+import "../blocks/customblocks";
 
 Blockly.setLocale(locale);
 
@@ -221,7 +222,25 @@ class BlocklyComponent extends React.Component {
                   {
                     "kind": "block",
                     "type": "variables_get"
+                  }
+                ]
+              },
+              {
+                "kind": "category",
+                "name": "Terra",
+                "contents": [
+                  {
+                    "kind": "block",
+                    "type": "instantiate"
                   },
+                  {
+                    "kind": "block",
+                    "type": "execute"
+                  },
+                  {
+                    "kind": "block",
+                    "type": "query"
+                  }
                 ]
               }
             ]

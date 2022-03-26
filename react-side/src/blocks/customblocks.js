@@ -72,3 +72,56 @@ Blockly.Blocks['test_react_date_field'] = {
     this.setStyle('loop_blocks');
   }
 };
+
+var instantiateBlock = {
+  "type": "instantiate",
+  "message0": "Instantiate",
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 0,
+  "tooltip": "",
+  "helpUrl": ""
+};
+
+Blockly.Blocks['instantiate'] = {
+
+  init: function() {
+    this.jsonInit(instantiateBlock);
+  }
+};
+
+var executeBlock = {
+  "type": "execute",
+  "message0": "Execute",
+  "inputsInline": true,
+  "previousStatement": null,
+  "nextStatement": null,
+  "colour": 0,
+  "tooltip": "",
+  "helpUrl": ""
+};
+
+Blockly.Blocks['execute'] = {
+
+  init: function() {
+    this.jsonInit(executeBlock);
+  }
+};
+
+var queryBlock = {
+  "type": "query",
+  "message0": "Query",
+  "inputsInline": true,
+  "previousStatement": null,
+  "colour": 0,
+  "tooltip": "",
+  "helpUrl": ""
+};
+
+Blockly.Blocks['query'] = {
+
+  init: function() {
+    this.jsonInit(queryBlock);
+  }
+};
