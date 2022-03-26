@@ -34,3 +34,10 @@ Blockly.JavaScript['test_react_field'] = function (block) {
 Blockly.JavaScript['test_react_date_field'] = function (block) {
     return 'console.log(' + block.getField('DATE').getText() + ');\n';
 };
+
+Blockly.JavaScript['text_print'] = function(block) {
+    // Print statement.
+    var msg = Blockly.JavaScript.valueToCode(block, 'TEXT',
+        Blockly.JavaScript.ORDER_NONE) || '\'\'';
+    return 'println!(' + msg + ');\n';
+};
