@@ -109,6 +109,23 @@ Blockly.Blocks['execute'] = {
   }
 };
 
+var queryDefBlock = {
+  "type": "querydef",
+  "message0": "QueryDef",
+  "inputsInline": true,
+  "previousStatement": null,
+  "colour": 0,
+  "tooltip": "",
+  "helpUrl": ""
+};
+
+Blockly.Blocks['querydef'] = {
+
+  init: function() {
+    this.jsonInit(queryDefBlock);
+  }
+};
+
 var queryBlock = {
   "type": "query",
   "message0": "Query",
